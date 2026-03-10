@@ -157,7 +157,7 @@ export class Service {
         }
     }
 
-    async createComment({postId, commentContent, parentCommentId, likes}){
+    async createComment({postId, commentContent, parentCommentId}){
         try {
             return await this.databases.createRow({
                 databaseId: conf.appwriteDatabaseID,
@@ -166,8 +166,7 @@ export class Service {
                 data: {
                     postId,
                     commentContent,
-                    parentCommentId,
-                    likes
+                    parentCommentId
                 }
             })
         } catch (error) {
@@ -175,7 +174,7 @@ export class Service {
         }
     }
 
-    async updateComment({postId,commentContent, parentCommentId}) {
+    async updateComment(slug, {postId,commentContent, parentCommentId}) {
         try {
             return await this.databases.updateRow({
                 databaseId: conf.appwriteDatabaseID,
@@ -230,11 +229,33 @@ export class Service {
         }
     }
 
-    async likePost(postId){
+    async likePost(postId, currentLikes) {
         try {
-            
+            return await this.databases.updateRow({
+                databaseId: conf.appwriteDatabaseID,
+                tableId: conf.appwriteCollectionIdMain,
+                rowId: postId,
+                data: {
+                    likes: currentLikes + 1
+                }
+            })
         } catch (error) {
-            console.log()
+            console.log("like post error", error)
+        }
+    }
+
+    async unlikePost(commentId, currentLikes) {
+        try {
+            return await this.databases.updateRow({
+                databaseId: conf.appwriteDatabaseID,
+                tableId: conf.appwriteCollectionIdMain,
+                rowId: commentId,
+                data: {
+                    likes: currentLikes - 1
+                }
+            })
+        } catch (error) {
+            console.log("unlike comment error", error)
         }
     }
 }
