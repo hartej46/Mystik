@@ -14,7 +14,7 @@ export class Service {
         this.bucket = new Storage(this.client)
     }
 
-    async createPost({}) {
+    async createPost({title, content, archived,featuredMedia,userId, slug}) {
         try {
             return await this.databases.createRow({
                 databaseId: conf.appwriteDatabaseID,
@@ -256,6 +256,23 @@ export class Service {
             })
         } catch (error) {
             console.log("unlike comment error", error)
+        }
+    }
+
+    async getCurrentUserAvatar() {
+        try {
+            const user = await account.get();
+            if (user.$id) {
+                const avatarUrl = avatars.getInitials({
+                    name: user.name,
+                    width: 100,                    
+                    height: 100,           
+                });
+                return avatarUrl.toString();
+            }
+        } catch (error) {
+            console.error(error);
+            return null;
         }
     }
 }
