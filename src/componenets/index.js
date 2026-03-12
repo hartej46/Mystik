@@ -1,11 +1,13 @@
 import Container from "./container/Container";
 import Logo from "./Logo";
-import AccountCircle from "./header/AccountCircle";
+import Account from "./header/Account";
 import Logout from "./header/Logout";
+import AccountCircle from "./AccountCircle";
 
 export {
     Container,
     Logo,
-    AccountCircle,
-    Logout
+    Account,
+    Logout,
+    AccountCircle
 }

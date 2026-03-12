@@ -1,7 +1,8 @@
 import {Container, Logo} from '../index'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { AccountCircle } from '../index'
+import { Account } from '../index'
+import { Home, CirclePlus,LogIn,LogOut,User, Bell } from 'lucide-react'
 
 
 function Header() {
@@ -10,30 +11,30 @@ function Header() {
 
   const navItems = [
     {
-      name: 'Home',
+      name:  `${<Home/>} Home`,
       slug: "/",
       active: true
     }, 
     {
-      name: "Login",
+      name: `${<LogIn/>}  LogIn`,
       slug: "/login",
       active: !authStatus,
   },
   {
-      name: "Signup",
+      name: `${<User/>} SignUp`,
       slug: "/signup",
       active: !authStatus,
   },
   {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-  },
-  {
-      name: "Add Post",
+      name: `${<CirclePlus/>}  Add-Post`,
       slug: "/add-post",
       active: authStatus,
   },
+  {
+    name: `${<Bell/>}`,
+    slug: "/notification",
+    active: authStatus,
+  }
   ]
 
   return (
@@ -53,7 +54,7 @@ function Header() {
                                                  </li>) : null )}
             {authStatus && (
               <li>
-                <AccountCircle/>
+                <Account/>
               </li>
             )}
           </ul>
