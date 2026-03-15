@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import authService from '../../Appwrite/Auth'
 import {logout} from  '../../store/authSlice'
