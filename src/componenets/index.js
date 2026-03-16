@@ -5,6 +5,9 @@ import Logout from "./header/Logout";
 import AccountCircle from "./AccountCircle";
 import Header from "./header/header";
 import Footer from "./footer/Footer";
+import EmailVerification from "./EmailVerification";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 export {
     Container,
@@ -13,5 +16,8 @@ export {
     Logout,
     AccountCircle,
     Header,
-    Footer
+    Footer,
+    Login,
+    SignUp,
+    EmailVerification
 }
